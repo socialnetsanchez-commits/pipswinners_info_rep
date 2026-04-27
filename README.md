@@ -1,21 +1,46 @@
-# React + TypeScript + Vite
+# Pips Winners — React + Vite + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio web de presentación para Pips Winners, convertido desde HTML estático a una app React + Vite + TypeScript lista para desplegar en Vercel.
 
-While this project uses React, Vite supports many popular JS frameworks. [See all the supported frameworks](https://vitejs.dev/guide/#scaffolding-your-first-vite-project).
+## Requisitos
 
-## Deploy Your Own
+- Node.js 18+
+- npm, pnpm o yarn
 
-Deploy your own Vite project with Vercel.
+## Instalación
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/examples/tree/main/framework-boilerplates/vite-react&template=vite-react)
-
-_Live Example: https://vite-react-example.vercel.app_
-
-### Deploying From Your Terminal
-
-You can deploy your new Vite project with a single command from your terminal using [Vercel CLI](https://vercel.com/download):
-
-```shell
-$ vercel
+```bash
+npm install
 ```
+
+## Desarrollo local
+
+```bash
+npm run dev
+```
+
+## Build de producción
+
+```bash
+npm run build
+```
+
+## Preview local del build
+
+```bash
+npm run preview
+```
+
+## Deploy en Vercel
+
+1. Sube este proyecto a GitHub.
+2. Importa el repositorio en Vercel.
+3. Vercel detectará Vite automáticamente.
+4. Build command: `npm run build`
+5. Output directory: `dist`
+
+El archivo `vercel.json` incluye una regla de rewrite para servir la app como SPA.
+
+## Comunidad
+
+Telegram: [@PIPSWINNERSCOMMUNITY](https://t.me/PIPSWINNERSCOMMUNITY)
