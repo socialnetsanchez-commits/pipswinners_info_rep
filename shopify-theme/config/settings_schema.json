@@ -1,0 +1,22 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Pips Winners AI Store",
+    "theme_version": "1.0.0",
+    "theme_author": "Pips Winners",
+    "theme_documentation_url": "https://shopify.dev/docs/storefronts/themes",
+    "theme_support_url": "https://t.me/PIPSWINNERSCOMMUNITY"
+  },
+  {
+    "name": "Identidad Pips Winners",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      {
+        "type": "textarea",
+        "id": "footer_text",
+        "label": "Texto del footer",
+        "default": "Tienda preparada para dropshipping, productos digitales y automatizaciones con IA. Personaliza políticas, tiempos de envío y datos legales antes de publicar."
+      }
+    ]
+  }
+]

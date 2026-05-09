@@ -1,0 +1,44 @@
+<section class="section">
+  <div class="container">
+    <p class="label">{{ section.settings.eyebrow }}</p>
+    <h2 class="h2">{{ section.settings.heading }}</h2>
+    <div class="card-grid">
+      {% for block in section.blocks %}
+        <details class="faq-item" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <p>{{ block.settings.answer }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ confianza",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Confianza" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Preguntas frecuentes" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Pregunta",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Pregunta", "default": "¿Cómo se procesan los pedidos?" },
+        { "type": "textarea", "id": "answer", "label": "Respuesta", "default": "Shopify registra el pedido y puedes enviarlo a tu proveedor, fulfillment app o Zapier para automatizar tareas." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ confianza",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "¿Necesito tocar código?", "answer": "No para operar la tienda: sube el tema, crea productos y personaliza textos desde el editor visual de Shopify." } },
+        { "type": "faq", "settings": { "question": "¿Qué apps debo conectar?", "answer": "Recomendado: email/SMS, reseñas, chatbot, pixels de anuncios y Zapier o Shopify Flow para automatizaciones." } },
+        { "type": "faq", "settings": { "question": "¿Puedo vender productos físicos y digitales?", "answer": "Sí. Shopify permite productos físicos, variantes, inventario y archivos digitales mediante apps." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

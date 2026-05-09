@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "hero": { "type": "ai-store-hero" },
+    "products": { "type": "featured-products" },
+    "automation": { "type": "automation-stack" },
+    "faq": { "type": "trust-faq" }
+  },
+  "order": ["hero", "products", "automation", "faq"]
+}

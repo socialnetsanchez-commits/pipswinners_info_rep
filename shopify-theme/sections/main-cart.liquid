@@ -1,0 +1,34 @@
+<section class="section">
+  <div class="container">
+    <h1 class="h2">Carrito</h1>
+    {% if cart.item_count > 0 %}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="cart-card">
+        {% for item in cart.items %}
+          <div class="cart-line">
+            {% if item.image %}{{ item.image | image_url: width: 160 | image_tag: loading: 'lazy', alt: item.title }}{% endif %}
+            <div>
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              <p>{{ item.variant.title }}</p>
+              <input class="qty" type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Cantidad de {{ item.title }}">
+            </div>
+            <span class="price">{{ item.final_line_price | money }}</span>
+          </div>
+        {% endfor %}
+        <div class="cart-actions">
+          <p class="lead">Total: <strong>{{ cart.total_price | money }}</strong></p>
+          <div class="hero-actions">
+            <button class="btn btn-secondary" type="submit" name="update">Actualizar</button>
+            <button class="btn btn-primary" type="submit" name="checkout">Finalizar compra</button>
+          </div>
+        </div>
+      </form>
+    {% else %}
+      <p class="lead">Tu carrito está vacío.</p>
+      <a class="btn btn-primary" href="{{ routes.all_products_collection_url }}">Ver productos</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Carrito principal", "settings": [] }
+{% endschema %}

@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "main": { "type": "main-product" },
+    "automation": { "type": "automation-stack" },
+    "faq": { "type": "trust-faq" }
+  },
+  "order": ["main", "automation", "faq"]
+}
