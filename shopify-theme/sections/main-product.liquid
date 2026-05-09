@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container product-layout">
+    <div class="product-media">
+      {% if product.featured_image %}
+        {{ product.featured_image | image_url: width: 1000 | image_tag: loading: 'eager', alt: product.title }}
+      {% else %}
+        <div class="product-placeholder"></div>
+      {% endif %}
+    </div>
+
+    <div>
+      <p class="label">{{ product.vendor }}</p>
+      <h1 class="h2">{{ product.title }}</h1>
+      <p class="lead price">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <div>{{ product.description }}</div>
+
+      {% form 'product', product, class: 'product-form' %}
+        {% unless product.has_only_default_variant %}
+          <label for="ProductSelect">Variante</label>
+          <select id="ProductSelect" class="select" name="id">
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>
+                {{ variant.title }} - {{ variant.price | money }}{% unless variant.available %} - Agotado{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+
+        <label for="Quantity">Cantidad</label>
+        <input id="Quantity" class="qty" type="number" name="quantity" value="1" min="1">
+
+        <button class="btn btn-primary" type="submit" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+          {% if product.selected_or_first_available_variant.available %}Añadir al carrito{% else %}Agotado{% endif %}
+        </button>
+        {{ form | payment_button }}
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Producto principal", "settings": [] }
+{% endschema %}

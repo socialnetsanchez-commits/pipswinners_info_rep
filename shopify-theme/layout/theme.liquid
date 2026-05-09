@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#c8a86b">
+    <link rel="canonical" href="{{ canonical_url }}">
+
+    <title>
+      {{ page_title }}{% if current_tags %} &ndash; {{ current_tags | join: ', ' }}{% endif %}{% if current_page != 1 %} &ndash; Página {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+    </title>
+
+    {% if page_description %}
+      <meta name="description" content="{{ page_description | escape }}">
+    {% endif %}
+
+    {{ content_for_header }}
+
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#MainContent">Saltar al contenido</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+        {% if settings.logo != blank %}
+          {{ settings.logo | image_url: width: 160 | image_tag: alt: shop.name, loading: 'eager' }}
+        {% else %}
+          <span class="brand-mark">PW</span>
+          <span class="brand-name">{{ shop.name }}</span>
+        {% endif %}
+      </a>
+
+      <button class="nav-toggle" type="button" aria-controls="MainNav" aria-expanded="false" data-nav-toggle>
+        Menú
+      </button>
+
+      <nav id="MainNav" class="main-nav" data-nav>
+        {% for link in linklists.main-menu.links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+        <a href="{{ routes.cart_url }}">Carrito ({{ cart.item_count }})</a>
+      </nav>
+    </header>
+
+    <main id="MainContent" tabindex="-1">
+      {{ content_for_layout }}
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-logo">{{ shop.name }}</p>
+        <p>{{ settings.footer_text }}</p>
+      </div>
+      <div class="footer-links">
+        {% for link in linklists.footer.links %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      </div>
+      {% render 'risk-disclaimer' %}
+    </footer>
+  </body>
+</html>

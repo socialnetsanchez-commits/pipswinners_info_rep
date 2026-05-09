@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "shopify:zip": "cd shopify-theme && zip -r ../pips-winners-shopify-theme.zip . -x \"*.DS_Store\""
   },
   "dependencies": {
     "react": "^18.3.1",

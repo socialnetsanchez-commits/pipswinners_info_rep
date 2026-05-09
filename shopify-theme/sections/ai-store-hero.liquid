@@ -1,0 +1,55 @@
+<section class="section hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="label">{{ section.settings.eyebrow }}</p>
+      <h1 class="h1">{{ section.settings.heading | escape }} <span class="gold">{{ section.settings.highlight | escape }}</span></h1>
+      <p class="lead">{{ section.settings.subheading }}</p>
+      <div class="hero-actions">
+        {% if section.settings.primary_label != blank %}
+          <a class="btn btn-primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>
+        {% endif %}
+        {% if section.settings.secondary_label != blank %}
+          <a class="btn btn-secondary" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>
+        {% endif %}
+      </div>
+      <div class="metric-grid" aria-label="Ventajas principales">
+        <div class="metric"><strong>{{ section.settings.metric_1 }}</strong><span>{{ section.settings.metric_label_1 }}</span></div>
+        <div class="metric"><strong>{{ section.settings.metric_2 }}</strong><span>{{ section.settings.metric_label_2 }}</span></div>
+        <div class="metric"><strong>{{ section.settings.metric_3 }}</strong><span>{{ section.settings.metric_label_3 }}</span></div>
+      </div>
+    </div>
+    <div class="hero-card">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 900 | image_tag: loading: 'eager', alt: section.settings.heading }}
+      {% elsif collections.frontpage.products.first.featured_image %}
+        {{ collections.frontpage.products.first.featured_image | image_url: width: 900 | image_tag: loading: 'eager', alt: collections.frontpage.products.first.title }}
+      {% else %}
+        <div class="product-placeholder" role="img" aria-label="Imagen del producto destacado"></div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero tienda IA",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Texto superior", "default": "Tienda dropshipping automatizada con IA" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Productos ganadores" },
+    { "type": "text", "id": "highlight", "label": "Texto dorado", "default": "sin fricción" },
+    { "type": "textarea", "id": "subheading", "label": "Subtítulo", "default": "Una tienda preparada para vender productos físicos o digitales, capturar leads y conectar anuncios, emails, SMS, chatbot y flujos de Zapier desde Shopify." },
+    { "type": "url", "id": "primary_link", "label": "Enlace botón principal" },
+    { "type": "text", "id": "primary_label", "label": "Texto botón principal", "default": "Comprar ahora" },
+    { "type": "url", "id": "secondary_link", "label": "Enlace botón secundario" },
+    { "type": "text", "id": "secondary_label", "label": "Texto botón secundario", "default": "Automatizaciones" },
+    { "type": "image_picker", "id": "image", "label": "Imagen hero" },
+    { "type": "text", "id": "metric_1", "label": "Métrica 1", "default": "24/7" },
+    { "type": "text", "id": "metric_label_1", "label": "Etiqueta métrica 1", "default": "ventas online" },
+    { "type": "text", "id": "metric_2", "label": "Métrica 2", "default": "IA" },
+    { "type": "text", "id": "metric_label_2", "label": "Etiqueta métrica 2", "default": "creativos y copies" },
+    { "type": "text", "id": "metric_3", "label": "Métrica 3", "default": "Zapier" },
+    { "type": "text", "id": "metric_label_3", "label": "Etiqueta métrica 3", "default": "flujos conectados" }
+  ],
+  "presets": [{ "name": "Hero tienda IA" }]
+}
+{% endschema %}
